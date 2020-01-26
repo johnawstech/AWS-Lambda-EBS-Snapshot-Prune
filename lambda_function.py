@@ -37,7 +37,7 @@ def lambda_handler(event, context):
             },
                 ],
         OwnerIds=[
-            '386874538391',
+            'XXXXXXXXXXXXX',
                 ],
                                     )
     
