@@ -40,9 +40,7 @@ def lambda_handler(event, context):
             '386874538391',
                 ],
                                     )
-    #print response   ### PRINTS EVERYTHING!!! I MEAN EVERYTHING!!
-    #print response['SnapshotId'] ## It hated this, straight error
-    #print response[0] ## It hated this too, straight error
+    
     for snapshots in response['Snapshots']:
         #print snapshots
         StartTime = snapshots['StartTime']
