@@ -6,7 +6,6 @@ import os
 import boto3
 
 def lambda_handler(event, context):
-    instName = ""
     now = datetime.datetime.now()
     print("Now: ", now)
     ec = boto3.client('ec2')
@@ -46,8 +45,6 @@ def lambda_handler(event, context):
     #print response[0] ## It hated this too, straight error
     for snapshots in response['Snapshots']:
         #print snapshots
-        Description = snapshots['Description']
-        State = snapshots['State']
         StartTime = snapshots['StartTime']
         SnapshotID = snapshots['SnapshotId']
         #print "Description: ", Description
@@ -76,7 +73,7 @@ def lambda_handler(event, context):
                 try: 
                     ec.delete_snapshot(SnapshotId=SnapshotID)
                 except:
-                    print "Delete did not work"
+                    print ("Delete did not work")
         if(Hour == "02" or Hour == "04" or Hour == "08" or Hour == "10" or Hour == "14" or Hour == "16" or Hour == "20" or Hour == "22"):
             if secs >= 518400:  # 6 days
                 print("DELETE")
@@ -85,7 +82,7 @@ def lambda_handler(event, context):
                 try: 
                     ec.delete_snapshot(SnapshotId=SnapshotID)
                 except:
-                    print "Delete did not work"
+                    print ("Delete did not work")
         if(Hour == "06" or Hour == "18"):
             if secs >= 691200:  # 8 days
                 print("DELETE")
@@ -94,7 +91,7 @@ def lambda_handler(event, context):
                 try: 
                     ec.delete_snapshot(SnapshotId=SnapshotID)
                 except:
-                    print "Delete did not work"
+                    print ("Delete did not work")
         if(Hour == "12"):
             if secs >= 864000:  # 10 days
                 print("DELETE")
@@ -103,7 +100,7 @@ def lambda_handler(event, context):
                 try: 
                     ec.delete_snapshot(SnapshotId=SnapshotID)
                 except:
-                    print "Delete did not work"
+                    print ("Delete did not work")
         if Hour == "00":
             if secs >= 7776000:  # 90 days
                 print("DELETE")
@@ -112,4 +109,4 @@ def lambda_handler(event, context):
                 try: 
                     ec.delete_snapshot(SnapshotId=SnapshotID)
                 except:
-                    print "Delete did not work"
+                    print ("Delete did not work")
